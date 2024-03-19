@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه دوم</title>
+</head>
+<body>
+    <h1>صفحه دوم</h1>
+    <img id="remoteImage" src="" alt="تصویر از صفحه اول">
+
+    <script>
+        const socket = new WebSocket('safe2.html');
+        socket.addEventListener('open', function (event) {
+            console.log('اتصال با سرور WebSocket برقرار شد');
+        });
+
+        // دریافت تصویر از سرور و نمایش در صفحه
+        socket.addEventListener('message', function (event) {
+            const imageData = event.data;
+            const remoteImageElement = document.getElementById('remoteImage');
+            remoteImageElement.src = imageData;
+        });
+    </script>
+</body>
+</html>
